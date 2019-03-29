@@ -87,6 +87,7 @@
           <div class="col-auto">
             <div class="input-group mb-3">
               <input
+              id="inputDestination"
                 type="text"
                 class="form-control"
                 placeholder="Enter a destination"
@@ -132,22 +133,7 @@
         </div>
       </div>
     </div>
-<!-- Script -->
-<script type="text/javascript">
-mapboxgl.accessToken = 'pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA';
-var map = new mapboxgl.Map({
-container: 'map',
-style: 'mapbox://styles/mapbox/streets-v11',
-center: [-79.4512, 43.6568],
-zoom: 13
-});
- 
-var geocoder = new MapboxGeocoder({
-accessToken: mapboxgl.accessToken
-});
- 
-document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-    </script>
-    <script src="./assets/js/webcamAPI.js"></script>
+
+    <script src="./assets/js/app.js"></script>
   </body>
 </html>
