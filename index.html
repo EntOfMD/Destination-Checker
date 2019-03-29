@@ -7,10 +7,13 @@
       content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
     <script
       type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI_B6TXNNMg3hlGP2bVE0lXqo53-7dWEk&libraries=places"
     ></script>
+
 
     <!-- Bootstrap related -->
     <link
@@ -41,8 +44,9 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />  
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js'></script>
     <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css' type='text/css' />
-    <style>    
+    
 
+    <style>    
     .geocoder {
         position:absolute;
         z-index:1;
@@ -109,7 +113,7 @@
               <h5 class="card-header">Nearest webcam</h5>
               <div class="card-body">
                 <p class="card-text">
-                  webcam image goes here
+<div id="webcams"></div>
                 </p>
               </div>
             </div>
@@ -144,5 +148,6 @@ accessToken: mapboxgl.accessToken
  
 document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
     </script>
+    <script src="./assets/js/webcamAPI.js"></script>
   </body>
 </html>
