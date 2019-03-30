@@ -8,11 +8,6 @@
         />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <script
-            type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDI_B6TXNNMg3hlGP2bVE0lXqo53-7dWEk&libraries=places"
-        ></script>
-
         <!-- jQuery -->
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
@@ -32,31 +27,6 @@
             type="text/css"
         />
 
-        <style>
-            .geocoder {
-                position: absolute;
-                z-index: 1;
-                width: 50%;
-                left: 50%;
-                margin-left: -25%;
-                top: 20px;
-                height: 180px;
-            }
-            .mapboxgl-ctrl-geocoder {
-                min-width: 100%;
-            }
-            body {
-                margin: 0;
-                padding: 0;
-            }
-            #map {
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                height: 500px;
-                width: 100%;
-            }
-        </style>
         <!-- Bootstrap related -->
         <link
             rel="stylesheet"
@@ -74,13 +44,19 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"
         ></script>
-
+        <link
+            rel="stylesheet"
+            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="./assets/css/style.css" />
         <title>Last Minute Destination Checker</title>
     </head>
     <body>
         <div class="wrapper">
             <!-- Jumbotron -->
-            <div class="container text-center ">
+            <div class="container text-center">
                 <div
                     class="jumbotron jumbotron-fluid bg-primary py-2 mt-1 rounded"
                 >
@@ -96,12 +72,24 @@
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"
+                                    >Destination and Radius (miles)</span
+                                >
+                            </div>
                             <input
                                 id="inputDestination"
                                 type="text"
                                 class="form-control"
-                                placeholder="Enter a destination"
-                                aria-describedby="submitDestination"
+                                placeholder="Name or Zip"
+                            />
+                            <input
+                                id="inputRadius"
+                                type="number"
+                                class="form-control"
+                                placeholder="Max 155"
+                                max="155"
+                                min="1"
                             />
                             <div class="input-group-append">
                                 <button
@@ -109,6 +97,7 @@
                                     type="button"
                                     id="submitDestination"
                                 >
+                                    <i class="fas fa-search"></i>
                                     Search!
                                 </button>
                             </div>
@@ -119,9 +108,9 @@
             <!-- Searchbar ends -->
             <div class="container">
                 <div class="row justify-content-between">
-                    <div class="col-4 text-center ">
+                    <div id="webcamCard" class="col-4 text-center">
                         <div class="card">
-                            <h5 class="card-header">Nearest webcam</h5>
+                            <h5 class="card-header">Nearest Webcams</h5>
                             <div class="card-body">
                                 <div class="card-text">
                                     <div id="webcams"></div>
@@ -129,7 +118,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-8">
+                    <div id="mapCard" class="col-8">
+                        <h5 class="card-header rounded border">
+                            Map
+                        </h5>
                         <div class="card rounded" style="height:500px;">
                             <div id="map"></div>
                         </div>
