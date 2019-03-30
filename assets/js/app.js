@@ -1,10 +1,14 @@
 const webcamConfig = {
     long: '',
     lat: '',
-    radius: 100,
+    radius: 0,
     lang: 'en',
     APIKEY: 'b1b6ceffb4msh87229b92a53ebb2p1f35b0jsnb579243600bf'
 };
+
+function milesToKMConvert(miles) {
+    return miles / 0.62137;
+}
 
 mapboxgl.accessToken =
     'pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA';
@@ -15,6 +19,16 @@ $(function() {
     $('#submitDestination').on('click', e => {
         e.preventDefault();
         $('#webcams').empty();
+        $('#webcamCard').show();
+        $('#mapCard').show();
+        webcamConfig.radius = Math.floor(
+            milesToKMConvert($('#inputRadius').val())
+        );
+
+        if (webcamConfig.radius > 155) {
+            webcamConfig.radius = 155;
+            $('#inputRadius').val('155');
+        }
 
         let searchQ = encodeURI($('#inputDestination').val());
         let URI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQ}.json?access_token=pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA`;
@@ -36,6 +50,9 @@ $(function() {
                 center: res.features[0].center, //[long, lat]
                 zoom: 10
             });
+
+            $('#inputRadius').val('');
+            $('#inputDestination').val('');
 
             // With the data from mapbox, it's passing it to webcam
             $.ajax({

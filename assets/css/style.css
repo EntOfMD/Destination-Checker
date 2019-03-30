@@ -1,0 +1,19 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+#map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 500px;
+    width: 100%;
+}
+.mapboxgl-ctrl-geocoder {
+    min-width: 100%;
+}
+
+#webcamCard,
+#mapCard {
+    display: none;
+}
