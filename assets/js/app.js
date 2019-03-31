@@ -18,10 +18,10 @@ var map;
 $(function() {
     $('#submitDestination').on('click', e => {
         e.preventDefault();
+        $('#destLabel').empty();
         $('#webcams').empty();
         $('#webcamCard').show();
         $('#mapCard').show();
-        $('#destLabel').prepend("Map of: " + decodeURI($('#inputDestination').val()));
         webcamConfig.radius = Math.floor(
             milesToKMConvert($('#inputRadius').val())
         );
@@ -51,7 +51,7 @@ $(function() {
                 center: res.features[0].center, //[long, lat]
                 zoom: 10
             });
-
+            $('#destLabel').prepend("Map of: " + decodeURI($('#inputDestination').val()));
             $('#inputRadius').val('');
             $('#inputDestination').val('');
 
@@ -189,18 +189,18 @@ $("#add-fav").on("click", function(event) {
     event.preventDefault();
   
     // Grabs user input
-    var inputFav = $("#searchQ");
+    var inputFav =  decodeURI($('#inputDestination').val());
 
     // Creates local "temporary" object for holding favorites data
-    var newFav = {
-    destination: inputFav
-    };
+    //var newFav = {
+    //destination: inputFav
+   //};
   
     // Uploads destination to the database
-    database.ref().push(newFav.destination);
+    database.ref().push(inputFav);
   
     // Logs everything to console
-    console.log(newFav.destination);
+    console.log(inputFav);
   
     // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
     database.ref().on("child_added", function(childSnapshot) {

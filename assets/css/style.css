@@ -24,3 +24,6 @@ body {
     background-color: red;
     color: white;
 }
+#favorites {
+    margin-left: 10%;
+}
