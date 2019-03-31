@@ -189,7 +189,7 @@ $("#add-fav").on("click", function(event) {
     event.preventDefault();
   
     // Grabs user input
-    var inputFav = $("#searchQ").val().trim();
+    var inputFav = $("#searchQ");
 
     // Creates local "temporary" object for holding favorites data
     var newFav = {
