@@ -17,3 +17,7 @@ body {
 #mapCard {
     display: none;
 }
+#add-fav {
+    background-color: red;
+    color: white;
+}

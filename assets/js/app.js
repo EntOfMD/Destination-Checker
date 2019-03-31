@@ -32,6 +32,18 @@ $(function() {
 
         let searchQ = encodeURI($('#inputDestination').val());
         let URI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQ}.json?access_token=pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA`;
+        
+        document.getElementById("submitDestination").onclick = function() {
+            //First things first, we need our text:
+            var text = document.getElementById("inputDestination").value; //.value gets input values
+            console.log(text);
+        
+            //Now construct a quick list element
+            var li = "<li>" + text + "</li>";
+        
+            //Now use appendChild and add it to the list!
+            document.getElementById("list").appendChild(li);
+        }
 
         // Getting info from mapbox
         $.ajax({
