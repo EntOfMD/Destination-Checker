@@ -1,13 +1,13 @@
 const webcamConfig = {
     long: '',
     lat: '',
-    radius: 0,
+    radius: 10,
     lang: 'en',
     APIKEY: 'b1b6ceffb4msh87229b92a53ebb2p1f35b0jsnb579243600bf'
 };
 
 function milesToKMConvert(miles) {
-    return miles / 0.62137;
+    return Math.floor(miles / 0.62137);
 }
 
 mapboxgl.accessToken =
@@ -19,19 +19,18 @@ $(function() {
     $('#submitDestination').on('click', e => {
         e.preventDefault();
         $('#webcams').empty();
-        $('#webcamCard').show();
-        $('#mapCard').show();
-        webcamConfig.radius = Math.floor(
-            milesToKMConvert($('#inputRadius').val())
-        );
-
+        //if user enters anything over webcam's limit, it'll set to limit.
         if (webcamConfig.radius > 155) {
-            webcamConfig.radius = 155;
+            webcamConfig.radius = milesToKMConvert(155);
             $('#inputRadius').val('155');
+        } else {
+            webcamConfig.radius = milesToKMConvert($('#inputRadius').val());
+            $('#webcamCard').show();
+            $('#mapCard').show();
         }
 
         let searchQ = encodeURI($('#inputDestination').val());
-        console.log(searchQ);
+
         let URI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQ}.json?access_token=pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA`;
 
         // Getting info from mapbox
@@ -58,11 +57,11 @@ $(function() {
             // With the data from mapbox, it's passing it to webcam
             $.ajax({
                 type: 'GET',
-                url: `https://webcamstravel.p.rapidapi.com/webcams/list/nearby=${
-                    webcamConfig.lat
-                },${webcamConfig.long},${webcamConfig.radius}?lang=${
-                    webcamConfig.lang
-                }&show=webcams%3Atimelapse`,
+                url: `https://webcamstravel.p.rapidapi.com/webcams/list/limit=${$(
+                    '#inputWebcamLimit'
+                ).val()}/nearby=${webcamConfig.lat},${webcamConfig.long},${
+                    webcamConfig.radius
+                }?lang=${webcamConfig.lang}&show=webcams%3Atimelapse`,
                 contentType: 'application/json',
                 xhrFields: {
                     withCredentials: false
@@ -171,51 +170,49 @@ $(function() {
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA",
-    authDomain: "world-lens-facdf.firebaseapp.com",
-    databaseURL: "https://world-lens-facdf.firebaseio.com",
-    projectId: "world-lens-facdf",
-    storageBucket: "world-lens-facdf.appspot.com",
-    messagingSenderId: "290458329334"
-    };
+    apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
+    authDomain: 'world-lens-facdf.firebaseapp.com',
+    databaseURL: 'https://world-lens-facdf.firebaseio.com',
+    projectId: 'world-lens-facdf',
+    storageBucket: 'world-lens-facdf.appspot.com',
+    messagingSenderId: '290458329334'
+};
 
-firebase.initializeApp(config); 
-  
+firebase.initializeApp(config);
+
 // Create a variable to reference the database
 var database = firebase.database();
-  
+
 // Button for adding Favorites
-$("#add-fav").on("click", function(event) {
+$('#add-fav').on('click', function(event) {
     event.preventDefault();
-  
+
     // Grabs user input
-    var inputFav = $("#searchQ");
+    var inputFav = $('#searchQ');
 
     // Creates local "temporary" object for holding favorites data
     var newFav = {
-    destination: inputFav
+        destination: inputFav
     };
-  
+
     // Uploads destination to the database
     database.ref().push(newFav);
-  
+
     // Logs everything to console
     console.log(newFav.destination);
-  
+
     // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
-    database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
-  
-    // Store everything into a variable.
-    var inputFav = childSnapshot.val().destination;
-    console.log(inputFav);
-  
-    // Create the new row for the favorites list
-    var newRow = $("<tr>").append(
-    $("<td>").text(inputFav),
-    );
-  
-    // Append the new row to the table
-    $("#favorites-table > tbody").append(newRow);
-});
+    database.ref().on('child_added', function(childSnapshot) {
+        console.log(childSnapshot.val());
+
+        // Store everything into a variable.
+        var inputFav = childSnapshot.val().destination;
+        console.log(inputFav);
+
+        // Create the new row for the favorites list
+        var newRow = $('<tr>').append($('<td>').text(inputFav));
+
+        // Append the new row to the table
+        $('#favorites-table > tbody').append(newRow);
+    });
 });
