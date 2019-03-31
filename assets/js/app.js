@@ -66,7 +66,7 @@ $(function() {
                 console.log(favorites);
 
                 // appends the favorites card with a new button:
-                 $("ul").append("<li>destination</li>");
+                $("ul").append("<li>#destination</li>");
             });
 
 
