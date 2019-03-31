@@ -51,9 +51,35 @@ $(function() {
                 center: res.features[0].center, //[long, lat]
                 zoom: 10
             });
-            $('#destLabel').prepend("Map of: " + decodeURI($('#inputDestination').val()));
+            var destination = decodeURI($('#inputDestination').val());
+            $('#destLabel').append("Map of: " + destination);
             $('#inputRadius').val('');
             $('#inputDestination').val('');
+
+            var favorites = [];
+            $("#add-fav").on("click", function(event) {
+                event.preventDefault();
+              
+                // Grabs current destination and pushes it into an array:
+                var inputFav = destination;
+                favorites.push(inputFav);
+                console.log(favorites);
+
+                // appends the favorites card with a new button:
+                 $("ul").append("<li>destination</li>");
+            });
+
+
+            
+
+
+
+
+
+
+
+
+
 
             // With the data from mapbox, it's passing it to webcam
             $.ajax({
@@ -167,55 +193,24 @@ $(function() {
     });
 });
 
+
 /* global moment firebase */
 
 // Initialize Firebase
-var config = {
-    apiKey: "AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA",
-    authDomain: "world-lens-facdf.firebaseapp.com",
-    databaseURL: "https://world-lens-facdf.firebaseio.com",
-    projectId: "world-lens-facdf",
-    storageBucket: "world-lens-facdf.appspot.com",
-    messagingSenderId: "290458329334"
-    };
+//var config = {
+//   apiKey: "AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA",
+//    authDomain: "world-lens-facdf.firebaseapp.com",
+//    databaseURL: "https://world-lens-facdf.firebaseio.com",
+//    projectId: "world-lens-facdf",
+//    storageBucket: "world-lens-facdf.appspot.com",
+//    messagingSenderId: "290458329334"
+//    };
 
-firebase.initializeApp(config); 
+//firebase.initializeApp(config); 
   
 // Create a variable to reference the database
-var database = firebase.database();
-  
-// Button for adding Favorites
-$("#add-fav").on("click", function(event) {
-    event.preventDefault();
-  
-    // Grabs user input
-    var inputFav =  decodeURI($('#inputDestination').val());
+//var database = firebase.database();
 
-    // Creates local "temporary" object for holding favorites data
-    //var newFav = {
-    //destination: inputFav
-   //};
-  
-    // Uploads destination to the database
-    database.ref().push(inputFav);
-  
-    // Logs everything to console
-    console.log(inputFav);
-  
-    // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
-    database.ref().on("child_added", function(childSnapshot) {
-    console.log(childSnapshot.val());
-  
-    // Store everything into a variable.
-    var inputFav = childSnapshot.val().destination;
-    console.log(inputFav);
-  
-    // Create the new row for the favorites list
-    var newRow = $("<tr>").append(
-    $("<td>").text(inputFav),
-    );
-  
-    // Append the new row to the table
-    $("#favorites-table > tbody").append(newRow);
-});
-});
+// Button for adding Favorites
+
+//});
