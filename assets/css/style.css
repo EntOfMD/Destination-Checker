@@ -2,6 +2,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
 #map {
     position: absolute;
     top: 0;
@@ -9,6 +10,7 @@ body {
     height: 500px;
     width: 100%;
 }
+
 .mapboxgl-ctrl-geocoder {
     min-width: 100%;
 }
@@ -16,4 +18,9 @@ body {
 #webcamCard,
 #mapCard {
     display: none;
+}
+
+#add-fav {
+    background-color: red;
+    color: white;
 }
