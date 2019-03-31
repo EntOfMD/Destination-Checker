@@ -27,6 +27,9 @@
             type="text/css"
         />
 
+        <!-- Firebase Reference -->
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+
         <!-- Bootstrap related -->
         <link
             rel="stylesheet"
@@ -51,9 +54,6 @@
             crossorigin="anonymous"
         />
         <link rel="stylesheet" href="./assets/css/style.css" />
-        <!-- Firebase -->
-        <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-
         <title>Last Minute Destination Checker</title>
     </head>
     <body>
@@ -98,27 +98,40 @@
                                 <button
                                     class="btn btn-outline-secondary"
                                     type="button"
-                                    value="add to list"
                                     id="submitDestination"
                                 >
                                     <i class="fas fa-search"></i>
                                     Search!
                                 </button>
-                                <ul id='list'></ul>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Searchbar ends -->
+            <!-- Favorites -->
+            <div class="col-md-2">
+                <div class="card mb-4">
+                  <div class="card-header">Favorites</div>
+                  <div class="card-body">
+                    <table class="table table-sm table-hover" id='favorites-table'>
+                      <thead>
+                        <tr>
+                          <th scope="col">Favorite Destinations</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+        
             <div class="container">
                 <div class="row justify-content-between">
                     <div id="webcamCard" class="col-4 text-center">
                         <div class="card">
-                            <h5 class="card-header">Nearest Webcams          
-                                <!-- Button adds destination to favorites list -->
-                                <input id="add-fav" type="submit" value="Add destin. to favorites">
-                        </h5>
+                            <h5 class="card-header">Nearest Webcams</h5>
                             <div class="card-body">
                                 <div class="card-text">
                                     <div id="webcams"></div>
@@ -127,8 +140,12 @@
                         </div>
                     </div>
                     <div id="mapCard" class="col-8">
-                        <h5 class="card-header rounded border" id="mapCardDestination">
-                            Map
+                        <h5 class="card-header rounded border" id="destLabel">
+                            
+                            <!-- Button adds destination to favorites list -->
+                            <button type="button" class="btn btn-primary" id="add-fav" data-toggle="button" aria-pressed="false" autocomplete="off">
+                                Add to favorites
+                            </button> 
                         </h5>
                         <div class="card rounded" style="height:500px;">
                             <div id="map"></div>
