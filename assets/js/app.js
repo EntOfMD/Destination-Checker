@@ -16,6 +16,8 @@ mapboxgl.accessToken =
 var map;
 
 $(function() {
+    $('.owl-carousel').owlCarousel();
+
     $('#submitDestination').on('click', e => {
         e.preventDefault();
         $('#webcams').empty();
@@ -77,7 +79,9 @@ $(function() {
                         if (i.timelapse.day.available) {
                             //checking if the 'day' timelapse is available
                             $('#webcams').append(
-                                `<div class="card my-2 rounded">
+                                `
+                                <div class="p-2 bd-highlight flex-fill">
+                                <div class="card my-2 rounded">
                                 <iframe src='${
                                     i.timelapse.day.embed
                                 }' allow="fullscreen" class="car-img-top rounded"></iframe>
@@ -89,6 +93,7 @@ $(function() {
                                     i.status
                                 }</span>
                                 </p>
+                                </div>
                                 </div>
                                 </div>
                                 `

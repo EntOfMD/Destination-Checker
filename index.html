@@ -53,6 +53,10 @@
             integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
             crossorigin="anonymous"
         />
+        <!-- Owl Carousel -->
+        <link rel="stylesheet" href="./assets/css/owl.carousel.css" />
+        <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
+        <script src="./assets/js/owl.carousel.js"></script>
         <link rel="stylesheet" href="./assets/css/style.css" />
         <title>Last Minute Destination Checker</title>
     </head>
@@ -125,41 +129,34 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- Searchbar ends -->
-            <!-- Favorites -->
-            <div class="col-md-2">
-                <div class="card mb-4">
-                    <div class="card-header">Favorites</div>
-                    <div class="card-body">
-                        <table
-                            class="table table-sm table-hover"
-                            id="favorites-table"
-                        >
-                            <thead>
-                                <tr>
-                                    <th scope="col">Favorite Destinations</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div id="webcamCard" class="col-4 text-center">
-                        <div class="card">
-                            <h5 class="card-header">Nearest Webcams</h5>
+                <!-- Favorites -->
+                <div class="row justity-content-right">
+                    <div class="col-md-12" style="min-width: 100%">
+                        <div class="card mb-4">
                             <div class="card-body">
-                                <div class="card-text">
-                                    <div id="webcams"></div>
-                                </div>
+                                <table
+                                    class="table table-sm table-hover"
+                                    id="favorites-table"
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">
+                                                Favorite Destinations
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody></tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                    <div id="mapCard" class="col-8">
+                </div>
+            </div>
+            <!-- Searchbar ends -->
+
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div id="mapCard" class="col-md-12 mb-4">
                         <h5 class="card-header rounded border">
                             Map
                             <!-- Button adds destination to favorites list -->
@@ -174,8 +171,25 @@
                                 Add to favorites
                             </button>
                         </h5>
-                        <div class="card rounded" style="height:500px;">
+                        <div class="card rounded" style="height:400px;">
                             <div id="map"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="webcamCard" class="col-md-12 text-center mb-4">
+                        <div class="card">
+                            <h5 class="card-header">Nearest Webcams</h5>
+                            <div class="card-body">
+                                <div class="card-text">
+                                    <div class="owl-carousel">
+                                        <div
+                                            id="webcams"
+                                            class="d-flex flex-row bd-highlight mb-3"
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
