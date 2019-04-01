@@ -4,7 +4,7 @@ const weatherConfig = {
     return (
       'https://api.openweathermap.org/data/2.5/weather?q=' +
       location +
-      '&units=imperia&appid=' +
+      '&units=imperial&appid=' +
       this.APIKEY
     );
   }
@@ -20,6 +20,7 @@ function showWeather(info) {
     .then(function(response) {
       // Log the resulting object
       console.log(response);
+      $('#weatherHeader').html(`Weather for ${info.features[0].place_name}`);
     });
 }
 //   // Transfer content to HTML
