@@ -12,7 +12,6 @@ const weatherConfig = {
 
 // Here we run our AJAX call to the OpenWeatherMap API
 function showWeather(info) {
-  console.log(info);
   $.ajax({
     url: weatherConfig.queryURL(info.features[0].place_name),
     method: 'GET'
