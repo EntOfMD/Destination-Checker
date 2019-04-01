@@ -52,6 +52,7 @@ $(function() {
       contentType: 'application/json'
     }).then(res => {
       showWeather(res);
+      weatherForecast();
       //this is a bandaid for testing purposes, need to find a better solution
       webcamConfig.lat = res.features[0].center[1]; //long
       webcamConfig.long = res.features[0].center[0]; //lat

@@ -12,6 +12,7 @@ const weatherConfig = {
 
 // Here we run our AJAX call to the OpenWeatherMap API
 function showWeather(info) {
+  weatherForecast(info);
   $.ajax({
     url: weatherConfig.queryURL(info.features[0].place_name),
     method: 'GET'
@@ -22,6 +23,20 @@ function showWeather(info) {
       console.log(response);
       $('#weatherHeader').html(`Weather for ${info.features[0].place_name}`);
     });
+}
+
+function weatherForecast(info) {
+  $.ajax({
+    method: 'GET',
+    url: `https://api.openweathermap.org/data/2.5/forecast?lat=${
+      info.features[0].center[1]
+    }&lon=${info.features[0].center[0]}&units=imperial&appid=${
+      weatherConfig.APIKEY
+    }
+        `
+  }).then(res => {
+    console.log(res);
+  });
 }
 //   // Transfer content to HTML
 //   $('.city').html('<h1>' + response.name + ' Weather Details</h1>');
