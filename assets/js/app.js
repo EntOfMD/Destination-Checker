@@ -20,6 +20,7 @@ $(function() {
 
     $('#submitDestination').on('click', e => {
         e.preventDefault();
+        $('#destLabel').empty();
         $('#webcams').empty();
         //if user enters anything over webcam's limit, it'll set to limit.
         if (webcamConfig.radius > 155) {
@@ -52,9 +53,35 @@ $(function() {
                 center: res.features[0].center, //[long, lat]
                 zoom: 10
             });
-
+            var destination = decodeURI($('#inputDestination').val());
+            $('#destLabel').append("Map of: " + destination);
             $('#inputRadius').val('');
             $('#inputDestination').val('');
+
+            var favorites = [];
+            $("#add-fav").on("click", function(event) {
+                event.preventDefault();
+              
+                // Grabs current destination and pushes it into an array:
+                var inputFav = destination;
+                favorites.push(inputFav);
+                console.log(favorites);
+
+                // appends the favorites card with a new button:
+                $("ul").append("<li>#destination</li>");
+            });
+
+
+            
+
+
+
+
+
+
+
+
+
 
             // With the data from mapbox, it's passing it to webcam
             $.ajax({
