@@ -1,3 +1,5 @@
+var tempFav = [];
+
 const webcamConfig = {
   long: '',
   lat: '',
@@ -16,86 +18,103 @@ mapboxgl.accessToken =
 var map;
 
 $(function() {
-  $('.owl-carousel').owlCarousel();
+    $('.owl-carousel').owlCarousel();
 
-  $('#submitDestination').on('click', e => {
-    e.preventDefault();
-    $('#destLabel').empty();
-    $('#webcams').empty();
-    //if user enters anything over webcam's limit, it'll set to limit.
-    if (webcamConfig.radius > 155) {
-      webcamConfig.radius = milesToKMConvert(155);
-      $('#inputRadius').val('155');
-    } else {
-      webcamConfig.radius = milesToKMConvert($('#inputRadius').val());
-      $('#webcamCard').show();
-      $('#mapCard').show();
-    }
+    $('#submitDestination').on('click', e => {
+        e.preventDefault();
+        $('#destLabel').empty();
+        $('#webcams').empty();
+        
+        tempFav.push(document.getElementById("inputDestination").value);
+        console.log(tempFav);
+        $('#destLabel').append("Map of: " + tempFav);
+        tempFav = null;
+        tempFav = [];
 
-    let searchQ = encodeURI($('#inputDestination').val());
-
-    let URI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQ}.json?access_token=pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA`;
-
-    // Getting info from mapbox
-    $.ajax({
-      type: 'GET',
-      url: URI,
-      contentType: 'application/json'
-    }).then(res => {
-      //this is a bandaid for testing purposes, need to find a better solution
-      webcamConfig.lat = res.features[0].center[1]; //long
-      webcamConfig.long = res.features[0].center[0]; //lat
-
-      // creates a new map object and index.html will take the map obj and display it
-      map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11',
-        center: res.features[0].center, //[long, lat]
-        zoom: 10
-      });
-      var destination = decodeURI($('#inputDestination').val());
-      $('#destLabel').append('Map of: ' + destination);
-      //   $('#inputRadius').val('');
-      //   $('#inputDestination').val('');
-
-      var favorites = [];
-      $('#add-fav').on('click', function(event) {
-        event.preventDefault();
-
-        // Grabs current destination and pushes it into an array:
-        var inputFav = destination;
-        favorites.push(inputFav);
-        console.log(favorites);
-
-        // appends the favorites card with a new button:
-        $('ul').append('<li>#destination</li>');
-      });
-      showWeather(res);
-
-      // With the data from mapbox, it's passing it to webcam
-      $.ajax({
-        type: 'GET',
-        url: `https://webcamstravel.p.rapidapi.com/webcams/list/limit=${$(
-          '#inputWebcamLimit'
-        ).val() || 2}/nearby=${webcamConfig.lat},${webcamConfig.long},${
-          webcamConfig.radius
-        }?lang=${webcamConfig.lang}&show=webcams%3Atimelapse`,
-        contentType: 'application/json',
-        xhrFields: {
-          withCredentials: false
-        },
-        headers: {
-          'X-RapidAPI-Key': webcamConfig.APIKEY
+        //if user enters anything over webcam's limit, it'll set to limit.
+        if (webcamConfig.radius > 155) {
+            webcamConfig.radius = milesToKMConvert(155);
+            $('#inputRadius').val('155');
+        } else {
+            webcamConfig.radius = milesToKMConvert($('#inputRadius').val());
+            $('#webcamCard').show();
+            $('#mapCard').show();
         }
-      }).then(res => {
-        //as of right now, this puts out ALL the timelapses.
-        res.result.webcams.forEach(i => {
-          //checking if the current iterated webcam is active
-          if (i.status === 'active') {
-            if (i.timelapse.day.available) {
-              //checking if the 'day' timelapse is available
-              $('#webcams').append(
-                `
+
+        let searchQ = encodeURI($('#inputDestination').val());
+
+        let URI = `https://api.mapbox.com/geocoding/v5/mapbox.places/${searchQ}.json?access_token=pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA`;
+
+        // Getting info from mapbox
+        $.ajax({
+            type: 'GET',
+            url: URI,
+            contentType: 'application/json'
+        }).then(res => {
+            //this is a bandaid for testing purposes, need to find a better solution
+            webcamConfig.lat = res.features[0].center[1]; //long
+            webcamConfig.long = res.features[0].center[0]; //lat
+
+            // creates a new map object and index.html will take the map obj and display it
+            map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v11',
+                center: res.features[0].center, //[long, lat]
+                zoom: 10
+            });
+            $('#inputRadius').val('');
+            $('#inputDestination').val('');
+
+            var favorites = [];
+            $("#add-fav").on("click", function(event) {
+                event.preventDefault();
+              
+                // Grabs current destination and pushes it into an array:
+                var inputFav = destination;
+                favorites.push(inputFav);
+                console.log(favorites);
+
+                // appends the favorites card with a new button:
+                $("ul").append("<li>#destination</li>");
+            
+            });
+
+
+            
+
+
+
+
+
+
+
+
+
+
+            // With the data from mapbox, it's passing it to webcam
+            $.ajax({
+                type: 'GET',
+                url: `https://webcamstravel.p.rapidapi.com/webcams/list/limit=${$(
+                    '#inputWebcamLimit'
+                ).val()}/nearby=${webcamConfig.lat},${webcamConfig.long},${
+                    webcamConfig.radius
+                }?lang=${webcamConfig.lang}&show=webcams%3Atimelapse`,
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: false
+                },
+                headers: {
+                    'X-RapidAPI-Key': webcamConfig.APIKEY
+                }
+            }).then(res => {
+                //as of right now, this puts out ALL the timelapses.
+                res.result.webcams.forEach(i => {
+                    //checking if the current iterated webcam is active
+                    if (i.status === 'active') {
+                        if (i.timelapse.day.available) {
+                            //checking if the 'day' timelapse is available
+                            $('#webcams').append(
+                                `
                                 <div class="p-2 bd-highlight flex-fill">
                                 <div class="card my-2 rounded">
                                 <iframe src='${
@@ -187,6 +206,7 @@ $(function() {
   });
 });
 
+<<<<<<< HEAD
 /* global moment firebase */
 
 // Initialize Firebase
@@ -237,3 +257,5 @@ $('#add-fav').on('click', function(event) {
     $('#favorites-table > tbody').append(newRow);
   });
 });
+=======
+>>>>>>> 65b877a4694f74bc922f83f31de74b5b878bb0dc
