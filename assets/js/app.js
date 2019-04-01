@@ -45,7 +45,7 @@ $(function() {
       //this is a bandaid for testing purposes, need to find a better solution
       webcamConfig.lat = res.features[0].center[1]; //long
       webcamConfig.long = res.features[0].center[0]; //lat
-      console.log(res);
+
       // creates a new map object and index.html will take the map obj and display it
       map = new mapboxgl.Map({
         container: 'map',
@@ -70,7 +70,7 @@ $(function() {
         // appends the favorites card with a new button:
         $('ul').append('<li>#destination</li>');
       });
-      showWeather();
+      showWeather(res);
 
       // With the data from mapbox, it's passing it to webcam
       $.ajax({

@@ -11,32 +11,25 @@ const weatherConfig = {
 };
 
 // Here we run our AJAX call to the OpenWeatherMap API
-function showWeather() {
+function showWeather(info) {
+  console.log(info);
   $.ajax({
-    url: weatherConfig.queryURL(),
+    url: weatherConfig.queryURL(info.features[0].place_name),
     method: 'GET'
   })
     // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
-      // Log the queryURL
-      console.log(
-        weatherConfig.queryURL(
-          $('#inputDestination').val() || navigator.geolocation
-        )
-      );
-
       // Log the resulting object
       console.log(response);
-
-      // Transfer content to HTML
-      $('.city').html('<h1>' + response.name + ' Weather Details</h1>');
-      $('.wind').text('Wind Speed: ' + response.wind.speed);
-      $('.humidity').text('Humidity: ' + response.main.humidity);
-      $('.temp').text('Temperature (F) ' + response.main.temp);
-
-      // Log the data in the console as well
-      console.log('Wind Speed: ' + response.wind.speed);
-      console.log('Humidity: ' + response.main.humidity);
-      console.log('Temperature (F): ' + response.main.temp);
     });
 }
+//   // Transfer content to HTML
+//   $('.city').html('<h1>' + response.name + ' Weather Details</h1>');
+//   $('.wind').text('Wind Speed: ' + response.wind.speed);
+//   $('.humidity').text('Humidity: ' + response.main.humidity);
+//   $('.temp').text('Temperature (F) ' + response.main.temp);
+
+//   // Log the data in the console as well
+//   console.log('Wind Speed: ' + response.wind.speed);
+//   console.log('Humidity: ' + response.main.humidity);
+//   console.log('Temperature (F): ' + response.main.temp);
