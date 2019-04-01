@@ -1,242 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-        />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <!-- jQuery -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"
-        ></script>
-        <!-- Mapbox -->
-        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
-        <link
-            href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css"
-            rel="stylesheet"
-        />
-        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css"
-            type="text/css"
-        />
+    <!-- jQuery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Mapbox -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
 
-        <!-- Firebase Reference -->
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
 
-        <!-- Bootstrap related -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-        />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-            crossorigin="anonymous"
-        />
-        <!-- Owl Carousel -->
-        <link rel="stylesheet" href="./assets/css/owl.carousel.css" />
-        <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
-        <script src="./assets/js/owl.carousel.js"></script>
-        <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- Bootstrap related -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <!-- Owl Carousel -->
+    <link rel="stylesheet" href="./assets/css/owl.carousel.css" />
+    <link rel="stylesheet" href="./assets/css/owl.carousel.min.css" />
+    <script src="./assets/js/owl.carousel.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
-        <!-- weather -->
-        <script src="./assets/js/weather.js"></script>
+    <!-- weather -->
+    <script src="./assets/js/weather.js"></script>
 
-        <title>Last Minute Destination Checker</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <!-- Jumbotron -->
-            <div class="container text-center">
-                <div
-                    class="jumbotron jumbotron-fluid bg-primary py-2 mt-1 rounded"
+    <title>Last Minute Destination Checker</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Jumbotron -->
+      <div class="container text-center">
+        <div class="jumbotron jumbotron-fluid bg-primary py-2 mt-1 rounded">
+          <h1 class="display-4">Last Minute Destination Checker</h1>
+          <p class="lead">
+            sub-title goes here
+          </p>
+        </div>
+      </div>
+      <!-- Jumbotron ends -->
+      <!-- Searchbar -->
+      <div class="container ">
+        <div class="row justify-content-center">
+          <div class="col-auto">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text">Destination</span>
+              </div>
+              <input
+                id="inputDestination"
+                type="text"
+                class="form-control"
+                placeholder="Name or Zip"
+              />
+              <div class="input-group-prepend">
+                <span class="input-group-text">Radius (miles)</span>
+              </div>
+              <input
+                id="inputRadius"
+                type="number"
+                class="form-control"
+                placeholder="Max 155"
+                max="155"
+                min="1"
+              />
+
+              <div class="input-group-append">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  id="submitDestination"
                 >
-                    <h1 class="display-4">Last Minute Destination Checker</h1>
-                    <p class="lead">
-                        sub-title goes here
-                    </p>
-                </div>
+                  <i class="fas fa-search"></i>
+                  Search!
+                </button>
+              </div>
             </div>
-            <!-- Jumbotron ends -->
-            <!-- Searchbar -->
-            <div class="container ">
-                <div class="row justify-content-center">
-                    <div class="col-auto">
-                        <div class="input-group mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"
-                                    >Destination</span
-                                >
-                            </div>
-                            <input
-                                id="inputDestination"
-                                type="text"
-                                class="form-control"
-                                placeholder="Name or Zip"
-                            />
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"
-                                    >Radius (miles)</span
-                                >
-                            </div>
-                            <input
-                                id="inputRadius"
-                                type="number"
-                                class="form-control"
-                                placeholder="Max 155"
-                                max="155"
-                                min="1"
-                            />
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"
-                                    >Webcam Limit</span
-                                >
-                            </div>
-                            <input
-                                id="inputWebcamLimit"
-                                type="number"
-                                class="form-control"
-                                placeholder="Max 5"
-                                max="5"
-                                min="1"
-                            />
-                            <div class="input-group-append">
-                                <button
-                                    class="btn btn-outline-secondary"
-                                    type="button"
-                                    id="submitDestination"
-                                >
-                                    <i class="fas fa-search"></i>
-                                    Search!
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Favorites -->
-                <div class="row justity-content-right">
-                    <div class="col-md-12" style="min-width: 100%">
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <table
-                                    class="table table-sm table-hover"
-                                    id="favorites-table"
-                                >
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">
-                                                Favorite Destinations
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+          </div>
+        </div>
+        <!-- Favorites -->
+        <div class="row justity-content-right">
+          <div class="col-md-12" style="min-width: 100%">
+            <div class="card mb-4">
+              <div class="card-body">
+                <table class="table table-sm table-hover" id="favorites-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">
+                        Favorite Destinations
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
+              </div>
             </div>
-            <!-- Searchbar ends -->
+          </div>
+        </div>
+      </div>
+      <!-- Searchbar ends -->
 
-            <!-- Favorites -->
-            <div class="col-md-3">
-                <div class="card mb-4" id="favorites">
-                  <div class="card-header">Favorites</div>
-                  <div class="card-body">
-                        <ul id="favlist">
-                          
-                        </ul>
+      <!-- Favorites -->
+      <div class="col-md-3">
+        <div class="card mb-4" id="favorites">
+          <div class="card-header">Favorites</div>
+          <div class="card-body">
+            <ul id="favlist"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-between">
+          <div id="mapCard" class="col-md-12 mb-4">
+            <h5 class="card-header rounded border">
+              Map
+              <!-- Button adds destination to favorites list -->
+              <button
+                type="button"
+                class="btn btn-primary"
+                id="add-fav"
+                data-toggle="button"
+                aria-pressed="false"
+                autocomplete="off"
+              >
+                Add to favorites
+              </button>
+            </h5>
+            <div class="card rounded" style="height:400px;">
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div id="webcamCard" class="col-md-12 text-center mb-4">
+            <div class="card">
+              <h5 class="card-header">Nearest Webcams</h5>
+              <div class="card-body">
+                <div class="card-text">
+                  <div class="owl-carousel">
+                    <div
+                      id="webcams"
+                      class="d-flex flex-row bd-highlight mb-3"
+                    ></div>
                   </div>
                 </div>
               </div>
-        
-
-            <div class="container">
-                <div class="row justify-content-between">
-                    <div id="mapCard" class="col-md-12 mb-4">
-                        <h5 class="card-header rounded border">
-                            Map
-                            <!-- Button adds destination to favorites list -->
-                            <button
-                                type="button"
-                                class="btn btn-primary"
-                                id="add-fav"
-                                data-toggle="button"
-                                aria-pressed="false"
-                                autocomplete="off"
-                            >
-                                Add to favorites
-                            </button>
-                        </h5>
-                        <div class="card rounded" style="height:400px;">
-                            <div id="map"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div id="webcamCard" class="col-md-12 text-center mb-4">
-                        <div class="card">
-                            <h5 class="card-header">Nearest Webcams</h5>
-                            <div class="card-body">
-                                <div class="card-text">
-                                    <div class="owl-carousel">
-                                        <div
-                                            id="webcams"
-                                            class="d-flex flex-row bd-highlight mb-3"
-                                        ></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div id="mapCard" class="col-8">
-                        <!-- Button adds destination to favorites list -->
-                        <button type="button" class="btn btn-primary" id="add-fav">
-                             Add to favorites
-                        </button> 
-                        <h5 class="card-header rounded border" id="destLabel">
-                        </h5>
-                        <div class="card rounded" style="height:500px;">
-                            <div id="map"></div>
-
-                </div>
-                <div class="row justity-content-right">
-                    <div class="col-md-12" style="min-width: 100%">
-                        <div class="card mb-2">
-                            <div class="card-header">
-                                <h4>Weather</h4>
-                            </div>
-                            <div class="card-body">
-                                <div id="weatherInfo"></div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
+          </div>
 
-        <script src="./assets/js/app.js"></script>
-    </body>
+          <div id="mapCard" class="col-8">
+            <!-- Button adds destination to favorites list -->
+            <button type="button" class="btn btn-primary" id="add-fav">
+              Add to favorites
+            </button>
+            <h5 class="card-header rounded border" id="destLabel"></h5>
+            <div class="card rounded" style="height:500px;">
+              <div id="map"></div>
+            </div>
+          </div>
+        </div>
+        <div class="row justity-content-right">
+          <div class="col-md-12" style="min-width: 100%">
+            <div class="card mb-2">
+              <div class="card-header">
+                <h4>Weather</h4>
+              </div>
+              <div class="card-body">
+                <div id="weatherInfo"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+  </body>
 </html>
