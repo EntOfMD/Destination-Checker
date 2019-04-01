@@ -24,20 +24,25 @@ function showWeather(info) {
       $('#weatherHeader').html(`Weather for ${info.features[0].place_name}`);
     });
 }
-
 function weatherForecast(info) {
+  let lat = info.features[0].center[1];
+  let lon = info.features[0].center[0];
   $.ajax({
     method: 'GET',
-    url: `https://api.openweathermap.org/data/2.5/forecast?lat=${
-      info.features[0].center[1]
-    }&lon=${info.features[0].center[0]}&units=imperial&appid=${
+    url: `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${
       weatherConfig.APIKEY
     }
         `
   }).then(res => {
     console.log(res);
+    // dt = res.list[0].dt;
+    // console.log(dt);
+    res.list.forEach(i => {
+      //   console.log(moment.unix(i.dt).format('llll'));
+    });
   });
 }
+
 //   // Transfer content to HTML
 //   $('.city').html('<h1>' + response.name + ' Weather Details</h1>');
 //   $('.wind').text('Wind Speed: ' + response.wind.speed);
