@@ -229,6 +229,7 @@ var newRow = $('<tr>').append($('<td>').text(firebaseFav));
 
 // Append the new row to the table
 $('#fav-table > tbody').append(newRow);
+
 });
 
 firebaseFav = null;
