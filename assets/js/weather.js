@@ -27,14 +27,22 @@ function showWeather(info) {
 <h5 class="card-header>Current Temp</h5>
 
 <h5 class="card-title">Currently: ${Math.floor(res.main.temp)}º F.</h5>
-<h6 class="card-subtitle mb-2">Today's high of ${Math.floor(
+<h6 class="card-subtitle mb-2"><i class="fas fa-temperature-high text-danger"></i> It will be high of ${Math.floor(
         res.main.temp_max
-      )}º F. and low of ${Math.floor(res.main.temp_min)}º F.</h6>
-    <p class="card-text">It will be mainly ${res.weather[0].description}. <br/>
-    <i class="fas fa-wind"></i> There will be wind upto ${
+      )}º F. 
+      <br/>
+      <i class="fas fa-temperature-low text-warning"></i> low of ${Math.floor(
+        res.main.temp_min
+      )}º F.</h6>
+    <p class="card-text"><i class="fas fa-cloud text-secondary"></i> It will be mainly ${
+      res.weather[0].description
+    }. <br/>
+    <i class="fas fa-wind text-info"></i> There will be wind upto ${
       res.wind.speed
     } mph</p>
-    <h6 class='lead'>${moment.unix(res.dt).format('llll')}</h6>
+    <h6 class='text-secondary'>Report time: ${moment
+      .unix(res.dt)
+      .format('llll')}</h6>
     
     </div>
     
