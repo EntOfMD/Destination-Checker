@@ -31,22 +31,9 @@ background-size: cover;
         max-width: 100%;
 }
 
-#add-fav {
-    background-color: red;
-    color: white;
+
+#weather {
+    margin: 2px;
+    max-width: 100%;
 }
 
-#left-col {
-    float: left;
-    max-width: 200px;
-}
-
-#right-col {
-    float: right;
-    max-width: 200px;
-}
-
-#center-col {
-    float: center;
-    max-width: 400px;
-}
