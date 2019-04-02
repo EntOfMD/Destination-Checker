@@ -37,6 +37,7 @@ background-size: cover;
 #add-fav {
     background-color: red;
     color: white;
+    z-index: 3;
 }
 
 #favorites {

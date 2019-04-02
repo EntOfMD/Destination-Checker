@@ -29,7 +29,6 @@
 
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
-    <script src="./assets/js/firebase-favorites.js"></script>
 
     <!-- Bootstrap related -->
     <link
@@ -123,60 +122,28 @@
             </div>
           </div>
         </div>
-        <!-- Favorites -->
-        <div class="row justity-content-right">
-          <div class="col-md-12" style="min-width: 100%">
-            <div class="card mb-4">
-              <div class="card-body">
-                <table class="table table-sm table-hover" id="favorites-table">
-                  <thead>
-                    <tr>
-                      <th scope="col">
-                        Favorite Destinations
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!-- Searchbar ends -->
 
       <!-- Favorites -->
       <div class="col-md-3">
         <div class="card mb-4" id="favorites">
           <div class="card-header">Favorites</div>
           <div class="card-body">
-            <ul id="favlist"></ul>
+           <table class="table table-sm table-hover" id='fav-table'>
+                <thead>
+                    <tr>
+                    <th scope="col">Destination</th>
+                     <th scope="col" id="numFavs">Ranking</th>
+                    </tr>
+                 </thead>
+                     <tbody>
+                      </tbody>
+              </table>
           </div>
         </div>
       </div>
 
       <div class="container">
-        <div class="row justify-content-between">
-          <div id="mapCard" class="col-md-12 mb-4">
-            <h5 class="card-header rounded border">
-              Map
-              <!-- Button adds destination to favorites list -->
-              <button
-                type="button"
-                class="btn btn-primary"
-                id="add-fav"
-                data-toggle="button"
-                aria-pressed="false"
-                autocomplete="off"
-              >
-                Add to favorites
-              </button>
-            </h5>
-            <div class="card rounded" style="height:400px;">
-              <div id="map"></div>
-            </div>
-          </div>
-        </div>
+     
         <div class="row">
           <div id="webcamCard" class="col-md-12 text-center mb-4">
             <div class="card">

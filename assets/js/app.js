@@ -18,6 +18,7 @@ mapboxgl.accessToken =
 var map;
 
 $(function() {
+
   $('.owl-carousel').owlCarousel();
 
   $('#submitDestination').on('click', e => {
@@ -103,6 +104,7 @@ $(function() {
               //checking if the 'day' timelapse is available
               $('#webcams').append(
                 `
+
                                 <div class="p-2 bd-highlight flex-fill">
                                 <div class="card my-2 rounded">
                                 <iframe src='${
@@ -189,6 +191,62 @@ $(function() {
             );
           }
         });
+                /* global moment firebase */
+
+            // Initialize Firebase
+            var config = {
+                apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
+                authDomain: 'world-lens-facdf.firebaseapp.com',
+                databaseURL: 'https://world-lens-facdf.firebaseio.com',
+                projectId: 'world-lens-facdf',
+                storageBucket: 'world-lens-facdf.appspot.com',
+                messagingSenderId: '290458329334'
+            };
+            
+            firebase.initializeApp(config);
+            
+            // Create a variable to reference the database
+            var database = firebase.database();
+
+            // Button for adding Favorites
+            $("#add-fav").on("click", function(event) {
+            event.preventDefault();
+
+            // Grabs user input
+            var tempFav = $("#inputDestination").val().trim();
+
+            // Creates local "temporary" object for holding employee data
+            var newFav = {
+                Destination: tempFav,
+            };
+
+            // Uploads train data to the database
+            database.ref().push(newFav);
+
+            // Logs everything to console
+            console.log(newFav.Destination);
+            });
+
+            // Create Firebase event for adding trains to the database and a row in the html when a user adds an entry
+            database.ref().on("child_added", function(childSnapshot) {
+            console.log(childSnapshot.val());
+
+            // Store everything into a variable.
+            var newFav = childSnapshot.val().Destination;
+
+            // Create the new row
+            var newRow = $("<tr>").append(
+            $("<td>").text(newFav),
+           // $("<td>").text(Ranking),
+            );
+
+            // Append the new row to the table
+            $("#fav-table > tbody").append(newRow);
+            });
+                
+            
+    tempFav = null;
+    tempFav = [];
       });
     });
   });
