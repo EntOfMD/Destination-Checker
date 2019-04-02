@@ -8,6 +8,13 @@ const webcamConfig = {
   lang: 'en',
   APIKEY: 'b1b6ceffb4msh87229b92a53ebb2p1f35b0jsnb579243600bf'
 };
+const storeSearch = {
+  place: undefined,
+  radius: $('#inputRadius').val(),
+  Lat: undefined,
+  Lon: undefined,
+  center: undefined
+};
 
 function milesToKMConvert(miles) {
   return Math.floor(miles / 0.62137);
@@ -19,20 +26,22 @@ mapboxgl.accessToken =
 var map;
 
 $(function() {
-
   $('.owl-carousel').owlCarousel();
 
   $('#submitDestination').on('click', e => {
     e.preventDefault();
     $('#destLabel').empty();
     $('#webcams').empty();
+    $('#weatherInfo').empty();
+    storeSearch.place = $('#inputDestination').val();
+    storeSearch.radius = $('#inputRadius').val();
 
-    tempFav.push(document.getElementById('inputDestination').value);
-    firebaseFav.push(document.getElementById('inputDestination').value);
-    console.log(tempFav);
+    // tempFav.push(document.getElementById('inputDestination').value);
+    // firebaseFav.push(document.getElementById('inputDestination').value);
+    // console.log(tempFav);
 
-    $('#destLabel').append('Map of: ' + tempFav);
-    $('#add-fav').append ('add ' + firebaseFav + ' to favorites');
+    // $('#destLabel').append('Map of: ' + tempFav);
+    // $('#add-fav').append ('add ' + firebaseFav + ' to favorites');
 
     //if user enters anything over webcam's limit, it'll set to limit.
     if (webcamConfig.radius > 155) {
@@ -58,7 +67,11 @@ $(function() {
 
       //this is a bandaid for testing purposes, need to find a better solution
       webcamConfig.lat = res.features[0].center[1]; //long
+      storeSearch.Lat = webcamConfig.lat;
       webcamConfig.long = res.features[0].center[0]; //lat
+      storeSearch.Lon = webcamConfig.long;
+      storeSearch.center = res.features[0].center;
+      pushToDB(storeSearch);
 
       // creates a new map object and index.html will take the map obj and display it
       map = new mapboxgl.Map({
@@ -67,9 +80,7 @@ $(function() {
         center: res.features[0].center, //[long, lat]
         zoom: 10
       });
-      $('#inputRadius').val('');
-      $('#inputDestination').val('');
-    
+
       // With the data from mapbox, it's passing it to webcam
       $.ajax({
         type: 'GET',
@@ -181,17 +192,16 @@ $(function() {
             );
           }
         });
-
-  });
-  tempFav = null;
-  tempFav = [];
+      });
+      tempFav = null;
+      tempFav = [];
     });
   });
 });
 
 /* global moment firebase */
 
- // Initialize Firebase
+// Initialize Firebase
 var config = {
   apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
   authDomain: 'world-lens-facdf.firebaseapp.com',
@@ -208,29 +218,29 @@ var database = firebase.database();
 
 // Button for adding Favorites
 $('#add-fav').on('click', function(event) {
-event.preventDefault();
+  event.preventDefault();
 
-// Uploads destination to the database
-database.ref().push(firebaseFav);
+  // Uploads destination to the database
+  database.ref().push(firebaseFav);
 
-// Logs everything to console
-console.log(firebaseFav);
+  // Logs everything to console
+  console.log(firebaseFav);
 
-// Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
-database.ref().on('child_added', function(childSnapshot) {
-console.log(childSnapshot.val());
+  // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
+  database.ref().on('child_added', function(childSnapshot) {
+    console.log(childSnapshot.val());
 
-// Store everything into a variable.
-var inputFav = childSnapshot.val().destination;
-console.log(inputFav);
+    // Store everything into a variable.
+    var inputFav = childSnapshot.val().destination;
+    console.log(inputFav);
 
-// Create the new row for the favorites list
-var newRow = $('<tr>').append($('<td>').text(firebaseFav));
+    // Create the new row for the favorites list
+    var newRow = $('<tr>').append($('<td>').text(firebaseFav));
 
-// Append the new row to the table
-$('#fav-table > tbody').append(newRow);
-});
+    // Append the new row to the table
+    $('#fav-table > tbody').append(newRow);
+  });
 
-firebaseFav = null;
-firebaseFav = [];
+  firebaseFav = null;
+  firebaseFav = [];
 });
