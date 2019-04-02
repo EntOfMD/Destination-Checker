@@ -60,9 +60,6 @@ function weatherForecast(info) {
     }
         `
   }).then(res => {
-    console.log(res);
-    // dt = res.list[0].dt;
-    // console.log(dt);
     res.list.forEach(i => {
       //   console.log(moment.unix(i.dt).format('llll'));
     });
