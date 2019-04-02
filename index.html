@@ -126,15 +126,13 @@
       <!-- Favorites -->
       <div class="col-md-3">
         <div class="card mb-4" id="favorites">
+          <!-- Button adds destination to favorites list -->
+          <button type="button" class="btn btn-primary" id="add-fav">
+          </button>
           <div class="card-header">Favorites</div>
           <div class="card-body">
            <table class="table table-sm table-hover" id='fav-table'>
-                <thead>
-                    <tr>
-                    <th scope="col">Destination</th>
-                     <th scope="col" id="numFavs">Ranking</th>
-                    </tr>
-                 </thead>
+ 
                      <tbody>
                       </tbody>
               </table>
@@ -162,10 +160,6 @@
           </div>
 
           <div id="mapCard" class="col-8">
-            <!-- Button adds destination to favorites list -->
-            <button type="button" class="btn btn-primary" id="add-fav">
-              Add to favorites
-            </button>
             <h5 class="card-header rounded border" id="destLabel"></h5>
             <div class="card rounded" style="height:500px;">
               <div id="map"></div>
