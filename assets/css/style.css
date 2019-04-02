@@ -30,17 +30,12 @@ background-size: cover;
 #mapCard {
     display: none;
 }
-.card-header{
-
-}
 
 #add-fav {
     background-color: red;
     color: white;
-    z-index: 3;
 }
 
 #favorites {
     margin-left: 10%;
 }
-
