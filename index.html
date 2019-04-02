@@ -111,40 +111,39 @@
       <!-- Main Content -->
       <div class=container id="main-content">
         <div class="row">
-          <!-- Left column: map and favorites -->
-          <div class="col-md-4" id="left-col">
 
-            <!-- Map -->
-            <div id="mapCard" class="col-8">
-              <h5 class="card-header rounded border" id="destLabel">Map</h5>
-              <div class="card rounded">
-                <div id="map"></div>
-              </div>
-            </div>
-      
-            <!-- Latest searches -->
-              <div class="card mb-4">
-                <div class="card-header"><h4>Latest Searches</h4></div>
-                  <div class="card-body" id="favorites">
-                  </div>
-              </div>
-          </div>
-            
-          <!-- End Column Left -->
+          <!-- Left column: webcams -->
+          <div class="col-md-7" id="center-col" id="webcams">
 
-          <!-- Center Column: webcams -->
-          <div class="col-md-8" id="center-col" id="webcams">
+          <!-- webcams -->
             <div class="card w-100" id="card">
               <h4 class="card-header">Nearest Webcams</h4>
               <div class="card-body d-flex flex-wrap justify-content-center" id="webcams"></div>
               </div>
           </div>
           
-          <!-- Right Column: weather & other links -->
+          <!-- Right Column: map, latest searches, weather & other links -->
 
-          <div class="col-md-4" style="max-width: 100%" id="right-col">
+          <div class="col-md-5" style="max-width: 100%" id="right-col">
+
+            <!-- Map -->
+            <div id="mapCard" class="col-5">
+                <h5 class="card-header rounded border" id="destLabel">Map</h5>
+                <div class="card rounded">
+                  <div id="map"></div>
+                </div>
+              </div>
+        
+              <!-- Latest searches -->
+                <div class="card mb-4">
+                  <div class="card-header"><h4>Latest Searches</h4></div>
+                    <div class="card-body" id="favorites">
+                    </div>
+                </div>
+            </div>
+  
             <!-- Weather -->
-            <div class="card mb-2">
+            <div class="card mb-4">
               <div class="card-header">
                 <h4 id="weatherHeader">Weather</h4>
               </div>
@@ -154,13 +153,13 @@
             </div>
 
             <!-- Other links -->
-            <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
-              <div class="card-header"><h4>Other Resources</h4></div>
+            <div class="card mb-4">
+                <div class="card-header"><h4>Other Resources</h4></div>
                 <div class="card-body">
                   <ul>
-                    <li><a href="https://www.weather-atlas.com/en/climate"></a>Average monthly weather around the world</a></li>
-                    <li><a href="https://www.livescience.com/topics/natural-disasters"></a>Latest natural disasters around the world</a></li>
-                    <li><a href="https://www.tripadvisor.com/Search?geo=1&pid=3826&redirect=&startTime=1554222942980&uiOrigin=MASTHEAD&q=false%20advertising&supportedSearchTypes=find_near_stand_alone_query&enableNearPage=true&returnTo=__2F__&searchSessionId=DA2D2929C2CB4185EC64427E44308D601554222935812ssid&social_typeahead_2018_feature=true&sid=DA2D2929C2CB4185EC64427E44308D601554222964605&ssrc=f&rf=1"></a>TripAdvisor Forum on False Advertising</a></li>
+                    <li><a href="https://www.weather-atlas.com/en/climate">Average monthly weather around the world</a></li>
+                    <li><a href="https://www.livescience.com/topics/natural-disasters">Latest natural disasters around the world</a></li>
+                    <li><a href="https://www.tripadvisor.com/Search?geo=1&pid=3826&redirect=&startTime=1554222942980&uiOrigin=MASTHEAD&q=false%20advertising&supportedSearchTypes=find_near_stand_alone_query&enableNearPage=true&returnTo=__2F__&searchSessionId=DA2D2929C2CB4185EC64427E44308D601554222935812ssid&social_typeahead_2018_feature=true&sid=DA2D2929C2CB4185EC64427E44308D601554222964605&ssrc=f&rf=1">TripAdvisor Forum on False Advertising</a></li>
                   </ul>
                 </div>
             </div>
