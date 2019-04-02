@@ -15,7 +15,6 @@ background-size: cover;
 }
 
 #map {
-    position: absolute;
     top: 0;
     bottom: 0;
     height: 400px;
@@ -26,9 +25,10 @@ background-size: cover;
     min-width: 100%;
 }
 
-#webcamCard,
+#webcams,
 #mapCard {
-    display: none;
+        margin: 2px;
+        max-width: 100%;
 }
 
 #add-fav {
@@ -36,6 +36,17 @@ background-size: cover;
     color: white;
 }
 
-#favorites {
-    margin-left: 10%;
+#left-col {
+    float: left;
+    max-width: 200px;
+}
+
+#right-col {
+    float: right;
+    max-width: 200px;
+}
+
+#center-col {
+    float: center;
+    max-width: 400px;
 }
