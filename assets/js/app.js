@@ -1,4 +1,5 @@
 var tempFav = [];
+var firebaseFav = [];
 
 const webcamConfig = {
   long: '',
@@ -6,6 +7,13 @@ const webcamConfig = {
   radius: 10,
   lang: 'en',
   APIKEY: 'b1b6ceffb4msh87229b92a53ebb2p1f35b0jsnb579243600bf'
+};
+const storeSearch = {
+  place: undefined,
+  radius: $('#inputRadius').val(),
+  Lat: undefined,
+  Lon: undefined,
+  center: undefined
 };
 
 function milesToKMConvert(miles) {
@@ -18,19 +26,22 @@ mapboxgl.accessToken =
 var map;
 
 $(function() {
-
   $('.owl-carousel').owlCarousel();
 
   $('#submitDestination').on('click', e => {
     e.preventDefault();
     $('#destLabel').empty();
     $('#webcams').empty();
+    $('#weatherInfo').empty();
+    storeSearch.place = $('#inputDestination').val();
+    storeSearch.radius = $('#inputRadius').val();
 
-    tempFav.push(document.getElementById('inputDestination').value);
+    // tempFav.push(document.getElementById('inputDestination').value);
+    // firebaseFav.push(document.getElementById('inputDestination').value);
+    // console.log(tempFav);
 
-    $('#destLabel').append('Map of: ' + tempFav);
-    tempFav = null;
-    tempFav = [];
+    // $('#destLabel').append('Map of: ' + tempFav);
+    // $('#add-fav').append ('add ' + firebaseFav + ' to favorites');
 
     //if user enters anything over webcam's limit, it'll set to limit.
     if (webcamConfig.radius > 155) {
@@ -56,7 +67,11 @@ $(function() {
 
       //this is a bandaid for testing purposes, need to find a better solution
       webcamConfig.lat = res.features[0].center[1]; //long
+      storeSearch.Lat = webcamConfig.lat;
       webcamConfig.long = res.features[0].center[0]; //lat
+      storeSearch.Lon = webcamConfig.long;
+      storeSearch.center = res.features[0].center;
+      pushToDB(storeSearch);
 
       // creates a new map object and index.html will take the map obj and display it
       map = new mapboxgl.Map({
@@ -65,21 +80,7 @@ $(function() {
         center: res.features[0].center, //[long, lat]
         zoom: 10
       });
-      $('#inputRadius').val('');
-      $('#inputDestination').val('');
 
-      var favorites = [];
-      $('#add-fav').on('click', function(event) {
-        event.preventDefault();
-
-        // Grabs current destination and pushes it into an array:
-        var inputFav = destination;
-        favorites.push(inputFav);
-        console.log(favorites);
-
-        // appends the favorites card with a new button:
-        $('ul').append('<li>#destination</li>');
-      });
       // With the data from mapbox, it's passing it to webcam
       $.ajax({
         type: 'GET',
@@ -191,114 +192,55 @@ $(function() {
             );
           }
         });
-                /* global moment firebase */
-
-            // Initialize Firebase
-            var config = {
-                apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
-                authDomain: 'world-lens-facdf.firebaseapp.com',
-                databaseURL: 'https://world-lens-facdf.firebaseio.com',
-                projectId: 'world-lens-facdf',
-                storageBucket: 'world-lens-facdf.appspot.com',
-                messagingSenderId: '290458329334'
-            };
-            
-            firebase.initializeApp(config);
-            
-            // Create a variable to reference the database
-            var database = firebase.database();
-
-            // Button for adding Favorites
-            $("#add-fav").on("click", function(event) {
-            event.preventDefault();
-
-            // Grabs user input
-            var tempFav = $("#inputDestination").val().trim();
-
-            // Creates local "temporary" object for holding employee data
-            var newFav = {
-                Destination: tempFav,
-            };
-
-            // Uploads train data to the database
-            database.ref().push(newFav);
-
-            // Logs everything to console
-            console.log(newFav.Destination);
-            });
-
-            // Create Firebase event for adding trains to the database and a row in the html when a user adds an entry
-            database.ref().on("child_added", function(childSnapshot) {
-            console.log(childSnapshot.val());
-
-            // Store everything into a variable.
-            var newFav = childSnapshot.val().Destination;
-
-            // Create the new row
-            var newRow = $("<tr>").append(
-            $("<td>").text(newFav),
-           // $("<td>").text(Ranking),
-            );
-
-            // Append the new row to the table
-            $("#fav-table > tbody").append(newRow);
-            });
-                
-            
-    tempFav = null;
-    tempFav = [];
       });
+      tempFav = null;
+      tempFav = [];
     });
   });
 });
 
-// /* global moment firebase */
+/* global moment firebase */
 
-// // Initialize Firebase
-// var config = {
-//   apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
-//   authDomain: 'world-lens-facdf.firebaseapp.com',
-//   databaseURL: 'https://world-lens-facdf.firebaseio.com',
-//   projectId: 'world-lens-facdf',
-//   storageBucket: 'world-lens-facdf.appspot.com',
-//   messagingSenderId: '290458329334'
-// };
+// Initialize Firebase
+var config = {
+  apiKey: 'AIzaSyBPH0U6IgZYOtTKpIFFzIZUM1gPeqF6OGA',
+  authDomain: 'world-lens-facdf.firebaseapp.com',
+  databaseURL: 'https://world-lens-facdf.firebaseio.com',
+  projectId: 'world-lens-facdf',
+  storageBucket: 'world-lens-facdf.appspot.com',
+  messagingSenderId: '290458329334'
+};
 
-// firebase.initializeApp(config);
+firebase.initializeApp(config);
 
 // // Create a variable to reference the database
-// var database = firebase.database();
+var database = firebase.database();
 
-// // Button for adding Favorites
-// $('#add-fav').on('click', function(event) {
-//   event.preventDefault();
+// Button for adding Favorites
+$('#add-fav').on('click', function(event) {
+  event.preventDefault();
 
-//   // Grabs user input
-//   var inputFav = $('#searchQ');
+  // Uploads destination to the database
+  database.ref().push(firebaseFav);
 
-//   // Creates local "temporary" object for holding favorites data
-//   var newFav = {
-//     destination: inputFav
-//   };
+  // Logs everything to console
+  console.log(firebaseFav);
 
-//   // Uploads destination to the database
-//   database.ref().push(newFav);
+  // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
+  database.ref().on('child_added', function(childSnapshot) {
+    console.log(childSnapshot.val());
 
-//   // Logs everything to console
-//   console.log(newFav.destination);
+    // Store everything into a variable.
+    var inputFav = childSnapshot.val().destination;
+    console.log(inputFav);
 
-//   // Create Firebase event for adding favorites to the database and a row in the html when a user adds an entry
-//   database.ref().on('child_added', function(childSnapshot) {
-//     console.log(childSnapshot.val());
+    // Create the new row for the favorites list
+    var newRow = $('<tr>').append($('<td>').text(firebaseFav));
 
-//     // Store everything into a variable.
-//     var inputFav = childSnapshot.val().destination;
-//     console.log(inputFav);
+    // Append the new row to the table
+    $('#fav-table > tbody').append(newRow);
+  });
 
-//     // Create the new row for the favorites list
-//     var newRow = $('<tr>').append($('<td>').text(inputFav));
-
-//     // Append the new row to the table
-//     $('#favorites-table > tbody').append(newRow);
-//   });
-// });
+  firebaseFav = null;
+  firebaseFav = [];
+});
