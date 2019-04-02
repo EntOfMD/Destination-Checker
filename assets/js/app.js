@@ -1,6 +1,4 @@
-var tempFav = [];
-var firebaseFav = [];
-
+// the config for webcam api
 const webcamConfig = {
     long: '',
     lat: '',
@@ -8,26 +6,26 @@ const webcamConfig = {
     lang: 'en',
     APIKEY: 'b1b6ceffb4msh87229b92a53ebb2p1f35b0jsnb579243600bf'
 };
+//general global object to fill in later once info from api are called
 const storeSearch = {
     place: undefined,
-    radius: $('#inputRadius').val(),
+    radius: undefined,
     Lat: undefined,
     Lon: undefined,
     center: undefined
 };
 
+//function to convert miles to kilometers(input to webcam api)
 function milesToKMConvert(miles) {
     return Math.floor(miles / 0.62137);
 }
 
+//for mapbox
+var map;
 mapboxgl.accessToken =
     'pk.eyJ1IjoibW1yeWR6IiwiYSI6ImNqdHU3N3J5ZzBiMmUzeW1ieW1ycXI2OW0ifQ.swCDKQIl5yECHO6-QVgcTA';
 
-var map;
-
 $(function() {
-    $('.owl-carousel').owlCarousel();
-
     $('#submitDestination').on('click', e => {
         e.preventDefault();
         $('#destLabel').empty();
@@ -35,13 +33,6 @@ $(function() {
         $('#weatherInfo').empty();
         storeSearch.place = $('#inputDestination').val();
         storeSearch.radius = $('#inputRadius').val();
-
-        // tempFav.push(document.getElementById('inputDestination').value);
-        // firebaseFav.push(document.getElementById('inputDestination').value);
-        // console.log(tempFav);
-
-        // $('#destLabel').append('Map of: ' + tempFav);
-        // $('#add-fav').append ('add ' + firebaseFav + ' to favorites');
 
         //if user enters anything over webcam's limit, it'll set to limit.
         if (webcamConfig.radius > 155) {
@@ -193,8 +184,6 @@ $(function() {
                     }
                 });
             });
-            tempFav = null;
-            tempFav = [];
         });
     });
 });
