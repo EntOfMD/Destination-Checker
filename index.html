@@ -1,217 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-        />
-        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <!-- jQuery -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
-            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-            crossorigin="anonymous"
-        ></script>
-        <!-- Mapbox -->
-        <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
-        <link
-            href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css"
-            rel="stylesheet"
-        />
-        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css"
-            type="text/css"
-        />
+    <!-- jQuery -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"
+      integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Mapbox -->
+    <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js"></script>
+    <link
+      href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css"
+      rel="stylesheet"
+    />
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v3.1.6/mapbox-gl-geocoder.css"
+      type="text/css"
+    />
 
-        <!-- Firebase Reference -->
-        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <!-- Firebase Reference -->
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
 
-        <!-- Bootstrap related -->
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-            crossorigin="anonymous"
-        />
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
-        <link
-            rel="stylesheet"
-            href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-            integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-            crossorigin="anonymous"
-        />
+    <!-- Bootstrap related -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
 
-        <!-- CSS STYLESHEET -->
-        <link rel="stylesheet" href="./assets/css/style.css" />
+    <!-- CSS STYLESHEET -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
 
-        <!-- Moment -->
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"
-            integrity="sha256-H9jAz//QLkDOy/nzE9G4aYijQtkLt9FvGmdUTwBk6gs="
-            crossorigin="anonymous"
-        ></script>
-
-        <title>Destination Checker</title>
-    </head>
-    <body>
-        <div class="wrapper">
-            <header>
-                <!-- Jumbotron -->
-                <div class="container text-center">
-                    <div
-                        class="jumbotron jumbotron-fluid bg-primary py-2 mt-1 rounded"
-                    >
-                        <h1 class="display-4">Destination Checker</h1>
-                        <p class="lead">
-                            Don't be caught off guard
-                        </p>
-                        <!-- Searchbar inside of Jumbotron -->
-                        <div class="container ">
-                            <div class="row justify-content-center">
-                                <div class="col-auto">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"
-                                                >Destination</span
-                                            >
-                                        </div>
-                                        <input
-                                            id="inputDestination"
-                                            type="text"
-                                            class="form-control"
-                                            placeholder="Name or Zip"
-                                        />
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"
-                                                >Radius (miles)</span
-                                            >
-                                        </div>
-                                        <input
-                                            id="inputRadius"
-                                            type="number"
-                                            class="form-control"
-                                            placeholder="Max 155"
-                                            max="155"
-                                            min="1"
-                                        />
-                                        <div class="input-group-append">
-                                            <button
-                                                class="btn btn-outline-secondary"
-                                                type="button"
-                                                id="submitDestination"
-                                            >
-                                                <i class="fas fa-search"></i>
-                                                Search!
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+    <!-- Moment -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"
+      integrity="sha256-H9jAz//QLkDOy/nzE9G4aYijQtkLt9FvGmdUTwBk6gs="
+      crossorigin="anonymous"
+    ></script>
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon" />
+    <title>Destination Checker</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <!-- Jumbotron -->
+        <div class="container text-center">
+          <div class="jumbotron jumbotron-fluid bg-primary py-2 mt-1 rounded">
+            <h1 class="display-4">Destination Checker</h1>
+            <p class="lead">
+              Don't be caught off guard
+            </p>
+            <!-- Searchbar inside of Jumbotron -->
+            <div class="container ">
+              <div class="row justify-content-center">
+                <div class="col-auto">
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Destination</span>
                     </div>
+                    <input
+                      id="inputDestination"
+                      type="text"
+                      class="form-control"
+                      placeholder="Name or Zip"
+                    />
+                    <div class="input-group-prepend">
+                      <span class="input-group-text">Radius (miles)</span>
+                    </div>
+                    <input
+                      id="inputRadius"
+                      type="number"
+                      class="form-control"
+                      placeholder="Max 155"
+                      max="155"
+                      min="1"
+                    />
+                    <div class="input-group-append">
+                      <button
+                        class="btn btn-outline-secondary"
+                        type="button"
+                        id="submitDestination"
+                      >
+                        <i class="fas fa-search"></i>
+                        Search!
+                      </button>
+                    </div>
+                  </div>
                 </div>
-
-                <!-- Jumbotron ends -->
-            </header>
-            <!-- Main Content -->
-            <div class="container" id="main-content">
-                <div class="row">
-                    <!-- Left column: webcams -->
-                    <div class="col-md-7" id="center-col" id="webcams">
-                        <!-- webcams -->
-                        <div class="card w-100" id="card">
-                            <h4 class="card-header">Nearest Webcams</h4>
-                            <div
-                                class="card-body d-flex flex-wrap justify-content-center"
-                                id="webcams"
-                            ></div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: map, recent searches, weather & other resources -->
-
-                    <div
-                        class="col-md-5"
-                        style="max-width: 100%"
-                        id="right-col"
-                    >
-                        <!-- Map -->
-                        <div class="card mb-4" id="mapCard">
-                            <h4 class="card-header">Map</h4>
-                            <div class="card-body align-content-center">
-                                <div id="map"></div>
-                            </div>
-                        </div>
-
-                        <!-- Recent searches -->
-                        <div class="card mb-4" id="favorites">
-                            <h4 class="card-header">Recent Searches</h4>
-                            <div class="card-body align-content-center">
-                                <div id="favs"></div>
-                                <div
-                                    class="btn-group-vertical"
-                                    id="recentBtnGrp"
-                                ></div>
-                            </div>
-                        </div>
-
-                        <!-- Weather -->
-                        <div class="card mb-4" id="weather">
-                            <h4 class="card-header">Weather</h4>
-                            <div class="card-body align-content-center">
-                                <div id="weatherInfo"></div>
-                            </div>
-                        </div>
-
-                        <!-- Other resources -->
-                        <div class="card mb-4" id="resources">
-                            <h4 class="card-header">Other Resources</h4>
-                            <div class="card-body align-content-left">
-                                <ul>
-                                    <li>
-                                        <a
-                                            href="https://www.weather-atlas.com/en/climate"
-                                            >Average monthly weather around the
-                                            world</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="https://www.livescience.com/topics/natural-disasters"
-                                            >Latest natural disasters around the
-                                            world</a
-                                        >
-                                    </li>
-                                    <li>
-                                        <a
-                                            href="https://www.tripadvisor.com/Search?geo=1&pid=3826&redirect=&startTime=1554222942980&uiOrigin=MASTHEAD&q=false%20advertising&supportedSearchTypes=find_near_stand_alone_query&enableNearPage=true&returnTo=__2F__&searchSessionId=DA2D2929C2CB4185EC64427E44308D601554222935812ssid&social_typeahead_2018_feature=true&sid=DA2D2929C2CB4185EC64427E44308D601554222964605&ssrc=f&rf=1"
-                                            >TripAdvisor Forum on False
-                                            Advertising</a
-                                        >
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+              </div>
             </div>
+          </div>
         </div>
 
-        <script src="./assets/js/app.js"></script>
-        <script src="./assets/js/weather.js"></script>
-        <script src="./assets/js/recentSearch.js"></script>
-    </body>
+        <!-- Jumbotron ends -->
+      </header>
+      <!-- Main Content -->
+      <div class="container" id="main-content">
+        <div class="row">
+          <!-- Left column: webcams -->
+          <div class="col-md-7" id="center-col" id="webcams">
+            <!-- webcams -->
+            <div class="card w-100" id="card">
+              <h4 class="card-header">Nearest Webcams</h4>
+              <div
+                class="card-body d-flex flex-wrap justify-content-center"
+                id="webcams"
+              ></div>
+            </div>
+          </div>
+
+          <!-- Right Column: map, recent searches, weather & other resources -->
+
+          <div class="col-md-5" style="max-width: 100%" id="right-col">
+            <!-- Map -->
+            <div class="card mb-4" id="mapCard">
+              <h4 class="card-header">Map</h4>
+              <div class="card-body align-content-center">
+                <div id="map"></div>
+              </div>
+            </div>
+
+            <!-- Recent searches -->
+            <div class="card mb-4" id="favorites">
+              <h4 class="card-header">Recent Searches</h4>
+              <div class="card-body align-content-center">
+                <div id="favs"></div>
+                <div class="btn-group-vertical" id="recentBtnGrp"></div>
+              </div>
+            </div>
+
+            <!-- Weather -->
+            <div class="card mb-4" id="weather">
+              <h4 class="card-header">Weather</h4>
+              <div class="card-body align-content-center">
+                <div id="weatherInfo"></div>
+              </div>
+            </div>
+
+            <!-- Other resources -->
+            <div class="card mb-4" id="resources">
+              <h4 class="card-header">Other Resources</h4>
+              <div class="card-body align-content-left">
+                <ul>
+                  <li>
+                    <a href="https://www.weather-atlas.com/en/climate"
+                      >Average monthly weather around the world</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.livescience.com/topics/natural-disasters"
+                      >Latest natural disasters around the world</a
+                    >
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.tripadvisor.com/Search?geo=1&pid=3826&redirect=&startTime=1554222942980&uiOrigin=MASTHEAD&q=false%20advertising&supportedSearchTypes=find_near_stand_alone_query&enableNearPage=true&returnTo=__2F__&searchSessionId=DA2D2929C2CB4185EC64427E44308D601554222935812ssid&social_typeahead_2018_feature=true&sid=DA2D2929C2CB4185EC64427E44308D601554222964605&ssrc=f&rf=1"
+                      >TripAdvisor Forum on False Advertising</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./assets/js/app.js"></script>
+    <script src="./assets/js/weather.js"></script>
+    <script src="./assets/js/recentSearch.js"></script>
+  </body>
 </html>
