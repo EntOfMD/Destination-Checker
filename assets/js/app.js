@@ -212,6 +212,6 @@ $(function() {
         fx.getMap();
 
         //remove this to stop blanking
-        $('#recentBtnGrp').empty();
+        // $('#recentBtnGrp').empty();
     });
 });
