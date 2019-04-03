@@ -20,7 +20,7 @@ function showWeather(info) {
         // We store all of the retrieved data inside of an object called "response"
         .then(function(res) {
             // Log the resulting object
-            console.log(res);
+
             $('#weatherHeader').html(
                 `Weather for ${info.features[0].place_name}`
             );
